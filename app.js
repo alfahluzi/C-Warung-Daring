@@ -1,11 +1,16 @@
 const express = require("express");
 const { urlencoded } = require("express");
+const { dirname } = require("path");
 const app = express();
 
 app.use(express.static("public"));
 app.use(urlencoded(express.urlencoded({ extended: false })));
 app.set("views", "./views");
 app.set("view engine", "ejs");
+
+app.use("/css", express.static("node_modules/bootstrap/dist/css"));
+app.use("/js", express.static("node_modules/bootstrap/dist/js"));
+app.use("/js", express.static("node_modules/jquery/dist"));
 
 // const Pool = require("pg").Pool;
 // const pool = new Pool({
