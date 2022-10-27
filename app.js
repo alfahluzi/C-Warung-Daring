@@ -1,6 +1,7 @@
 const express = require("express");
 const { urlencoded } = require("express");
 const { dirname } = require("path");
+const mysql = require("mysql");
 const app = express();
 
 app.use(express.static("public"));
@@ -12,38 +13,23 @@ app.use("/css", express.static("node_modules/bootstrap/dist/css"));
 app.use("/js", express.static("node_modules/bootstrap/dist/js"));
 app.use("/js", express.static("node_modules/jquery/dist"));
 
-// const Pool = require("pg").Pool;
-// const pool = new Pool({
-//   user: "admin",
-//   host: "194.233.91.96",
-//   database: "perpustakaan",
-//   password: "admin",
-//   port: 3333,
-// });
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "warung_online", //samain sama nama database di pc
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("DB Connected!");
+});
 
 app.get("/", (req, res) => {
-  //   pool.query("select * from app.buku", (error, result) => {
-  //     if (error) {
-  //       throw error;
-  //     }
-  //   });
   res.render("index", { daftarBuku: "" });
 });
 
-// app.get("/prepare-buku", (req, res) => {
-//   res.render("tambah_buku");
-// });
-
 app.post("/tambah", (req, res) => {
-  //   pool.query(
-  //     "insert into app.buku (nama_buku) values($1)",
-  //     [req.body.nama_buku],
-  //     (error, result) => {
-  //       if (error) throw error;
-
-  //       res.redirect("/");
-  //     }
-  //   );
   res.render("");
 });
 
