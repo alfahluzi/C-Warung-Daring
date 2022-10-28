@@ -1,7 +1,11 @@
 <%- include('template/header'); %>
 
 <body>
-    Test Aja
+    <form action="/submit-login" method="post">
+        <input type="text" name="name" id="name" value="">
+        <input type="text" name="password" id="password" value="">
+        <button type="submit">Submit</button>
+    </form>
 </body>
 
 <%- include('template/footer'); %>
