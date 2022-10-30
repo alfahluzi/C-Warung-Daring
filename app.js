@@ -3,7 +3,17 @@ const { urlencoded } = require("express");
 const { dirname } = require("path");
 const app = express();
 const bcrypt = require("bcrypt");
-
+const sessions = require("express-session");
+const ejs = require("ejs");
+ejs.delimiter = "?";
+app.use(
+  sessions({
+    secret: "inirahasiabanget",
+    saveUninitialized: true,
+    resave: false,
+  })
+);
+app.use(express.json());
 app.use(express.static("public"));
 app.use(urlencoded(express.urlencoded({ extended: false })));
 app.use(express.json());
@@ -13,17 +23,27 @@ app.use("/js", express.static("node_modules/jquery/dist"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+var session;
+module.exports = session;
+
 // routes
+const home_r = require("./routes/home");
+app.use("/", home_r);
+
 const auth_r = require("./routes/auth");
 app.use("/", auth_r);
+
 const checkout_r = require("./routes/checkout");
-app.use("/checkout", checkout_r);
+app.use("/", checkout_r);
+
 const details_r = require("./routes/details");
-app.use("/details", details_r);
-const home_r = require("./routes/home");
-app.use("/home", home_r);
+app.use("/", details_r);
+
 const keranjang_r = require("./routes/keranjang");
-app.use("/keranjang", keranjang_r);
+app.use("/", keranjang_r);
+
+const dahsboardAdmin_r = require("./routes/dashboardAdmin");
+app.use("/", dahsboardAdmin_r);
 
 // post route func ----------------------------
 app.post("/tambah", (req, res) => {

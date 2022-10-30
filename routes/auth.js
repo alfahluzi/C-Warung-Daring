@@ -1,6 +1,6 @@
 const express = require("express");
-const { getDbResult } = require("../helper/db_helper");
 const router = express.Router();
+const { getDbResult } = require("../helper/db_helper");
 const bcrypt = require("bcrypt");
 module.exports = router;
 
@@ -21,6 +21,9 @@ router.post("/submit-login", (req, res) => {
         console.log("rows " + rows[0]);
         if (rows[0] === undefined) return;
         if (await bcrypt.compare(req.body.password, rows[0].password)) {
+          req.session.userid = req.body.Akun_id;
+          req.session.username = req.body.name;
+          req.session.userrole = req.body.role;
           res.redirect("/home");
         } else res.send("not success");
       }

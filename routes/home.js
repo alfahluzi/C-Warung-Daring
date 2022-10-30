@@ -1,10 +1,8 @@
 const express = require("express");
-const app = express();
-const { getDbResult } = require("../helper/db_helper");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+const { getDbResult } = require("../helper/db_helper");
 module.exports = router;
 
-app.get("/home", (req, res) => {
+router.get("/home", (req, res) => {
   res.render("homePage", {});
 });

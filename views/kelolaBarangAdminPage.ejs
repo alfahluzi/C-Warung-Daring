@@ -1,0 +1,340 @@
+<?- include('./template/header'); ?>
+
+<body class="container-fluid p-0 row">
+    <div class=" col-2 ">
+        <?- include('template/dashboardSidebar'); ?>
+    </div>
+    <div class="container row col bg-light rounded-3" style="height: 100vh;">
+        <div class="col  rounded-3 bg-light px-0 my-1">
+            <div class="row  pt-3">
+                <div class="col-3">
+                    <h3>Pengelolaan Barang</h3>
+                </div>
+                <div class="col input-group mb-3">
+                    <input type="text" class="form-control border border-primary" placeholder="Cari Item Disini..">
+                </div>
+                <div class="col">
+                    <!-- button-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah-barang">
+                        Tambah Barang
+                    </button>
+                    <!-- modal-->
+                    <div class="modal fade" id="tambah-barang" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="tambah-barang-Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="#" method="post">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="tambah-barang-Label">Tambah Barang Baru</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text">Detail</span>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label style="width: 20%;" class="input-group-text" for="inputGroupFile01">Gambar</label>
+                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Jenis</label>
+                                            <select class="form-select" id="inputGroupSelect01">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Harga</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="inputGroup-sizing-default" style="width: 20%;">Kuantitas</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- button-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah-jenis">
+                        Tambah Jenis
+                    </button>
+                    <!-- modal-->
+                    <div class="modal fade" id="tambah-jenis" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="tambah-jenis-Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="#" method="post">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="tambah-jenis-Label">Tambah Jenis Baru</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Kategori</label>
+                                            <select class="form-select" id="inputGroupSelect01">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- button-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah-kategori">
+                        Tambah Kategori
+                    </button>
+                    <!-- modal-->
+                    <div class="modal fade" id="tambah-kategori" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="tambah-kategori-Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="#" method="post">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="tambah-jenis-Label">Tambah Kategori Baru</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- button-->
+                    </div>
+                </div>
+                <div class="row bg-primary rounded-3" style="min-height: 90vh;">
+                    <div class="row col p-3">
+                        <?for (let i = 0; i < 50; i++) {?>
+                        <div class="col-sm-4">
+                            <div class="card m-1" style="width: 17rem;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" class="card-img-top" alt="...">
+                                <div class="container">
+                                    <div class="row">
+                                        <h5 class="col">Kopi Pait</h5>
+                                        <!-- button-->
+                                        <button type="button" class="col-2 btn btn-primary btn-sm p-0 m-1" data-bs-toggle="modal" data-bs-target="#edit-item">
+                                            Edit
+                                        </button>
+                                        <!-- modal-->
+                                        <div class="modal fade" id="edit-item" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="edit-item-Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <form action="#" method="post">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="tambah-barang-Label">Edit
+                                                                Barang</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="input-group mb-3">
+                                                                <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                                                    aria-describedby="inputGroup-sizing-default">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <span style="width: 20%;" class="input-group-text">Detail</span>
+                                                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <label style="width: 20%;" class="input-group-text" for="inputGroupFile01">Gambar</label>
+                                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Jenis</label>
+                                                                <select class="form-select" id="inputGroupSelect01">
+                                                                    <option selected>Choose...</option>
+                                                                    <option value="1">One</option>
+                                                                    <option value="2">Two</option>
+                                                                    <option value="3">Three</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Harga</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                                                    aria-describedby="inputGroup-sizing-default">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text" id="inputGroup-sizing-default"
+                                                                    style="width: 20%;">Kuantitas</span>
+                                                                <input type="text" class="form-control" aria-label="Sizing example input"
+                                                                    aria-describedby="inputGroup-sizing-default">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- button-->
+                                        <button type="button" class="col-2 btn btn-primary btn-sm p-0 m-1" data-bs-toggle="modal" data-bs-target="#delete-item">
+                                            Del
+                                        </button>
+                                        <!-- modal-->
+                                        <div class="modal fade" id="delete-item" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="delete-item-Label" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="delete-item-Label">Hapus Barang
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Yakin hapus barang ini?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="button" class="btn btn-primary">Hapus</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="m-1 p-0">
+                                    <p class="card-text">Kopi Pait 1 kali peres Mantap!</p>
+                                    <div class="row">
+                                        <p class="col card-text">Rp50.000,00</p>
+                                        <p class="col-2 card-text">B5</p>
+                                        <p class="col-5 card-text">Terjual: 999</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?}?>
+                    </div>
+                    <div class="col-3 bg-info rounded-3 mt-4 me-3" style="position: sticky; top:0; height: 85vh;">
+                        <div class="container bg-light my-4 mx-auto rounded-3">
+                            <h5>Daftar Jenis</h5>
+                            <hr>
+                            <ul class="list-group" style="height: 30vh;overflow-y: auto;">
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>
+                                </div>
+                                <?for (let i = 0; i < 50; i++) {?>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" style="width: 90%;">Makanan</button>
+                                    <!-- button-->
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" data-bs-toggle="modal"
+                                        data-bs-target="#edit-jenis">Edit</button>
+                                </div>
+                                <?}?>
+                            </ul>
+                        </div>
+                        <div class="container bg-light my-4 mx-auto rounded-3">
+                            <h5>Daftar Kategori</h5>
+                            <hr>
+                            <ul class="list-group" style="height: 30vh;overflow-y: auto;">
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>
+                                </div>
+                                <?for (let i = 0; i < 50; i++) {?>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" style="width: 90%;">Makanan</button>
+                                    <!-- button-->
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" data-bs-toggle="modal"
+                                        data-bs-target="#delete-kategori">Del</button>
+                                </div>
+                                <?}?>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- modal edit jenis -->
+                    <div class="modal fade" id="edit-jenis" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-jenis-Label"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form action="#" method="post">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="edit-jenis-Label">Edit Jenis</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="input-group mb-3">
+                                            <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
+                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Kategori</label>
+                                            <select class="form-select" id="inputGroupSelect01">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal delete kategori-->
+                    <div class="modal fade" id="delete-kategori" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delete-kategori-Label"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="delete-kategori-Label">Hapus Kategori
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Yakin hapus kategori ini?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-primary">Hapus</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
