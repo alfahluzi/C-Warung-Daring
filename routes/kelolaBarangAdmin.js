@@ -36,7 +36,18 @@ function checkFileType(file, cb) {
   }
 }
 
-router.get("/kelola-barang-admin", (req, res) => {
+function adminAuth(req, res, next) {
+  if (!req.session.user.login) res.redirect("/login");
+  role = req.session.user.role;
+  if (role == 1) {
+    console.log("kamu admin");
+    return next();
+  }
+  console.log("kamu bukan admin");
+  res.redirect("/home");
+}
+
+router.get("/kelola-barang-admin", adminAuth, (req, res) => {
   getDbResult("select * from jenis_barang", (err, rowsJenis) => {
     if (err) return console.log(err);
     daftarJenis = rowsJenis;
@@ -57,7 +68,7 @@ router.get("/kelola-barang-admin", (req, res) => {
   });
 });
 
-router.post("/tambah-kategori", (req, res) => {
+router.post("/tambah-kategori", adminAuth, (req, res) => {
   nama = req.body.namaKategori;
   if (nama !== undefined) {
     getDbResult(
@@ -75,7 +86,7 @@ router.post("/tambah-kategori", (req, res) => {
   }
 });
 
-router.post("/tambah-jenis", (req, res) => {
+router.post("/tambah-jenis", adminAuth, (req, res) => {
   nama = req.body.namaJenis;
   kategori_id = req.body.jenisKategori;
   if (nama !== undefined) {
@@ -95,7 +106,7 @@ router.post("/tambah-jenis", (req, res) => {
   }
 });
 
-router.post("/tambah-barang-baru", uploadSingle, (req, res) => {
+router.post("/tambah-barang-baru", uploadSingle, adminAuth, (req, res) => {
   nama = req.body.namaBarangBaru;
   detail = req.body.detailBarangBaru;
   gambar = req.file.filename;
@@ -119,7 +130,7 @@ router.post("/tambah-barang-baru", uploadSingle, (req, res) => {
   }
 });
 
-router.post("/hapus-kategori", (req, res) => {
+router.post("/hapus-kategori", adminAuth, (req, res) => {
   kategori_id = req.body.kategori_id_todelete;
   if (kategori_id !== undefined) {
     getDbResult(
@@ -135,7 +146,7 @@ router.post("/hapus-kategori", (req, res) => {
   }
 });
 
-router.post("/hapus-barang", (req, res) => {
+router.post("/hapus-barang", adminAuth, (req, res) => {
   barang_id = req.body.barang_id_todelete;
   if (barang_id !== undefined) {
     getDbResult(
@@ -152,7 +163,7 @@ router.post("/hapus-barang", (req, res) => {
   }
 });
 
-router.post("/edit-jenis", (req, res) => {
+router.post("/edit-jenis", adminAuth, (req, res) => {
   jenis_id = req.body.jenis_id_toedit;
   namaJenis = req.body.nama_jenis_toedit;
   kategori_id = req.body.jenis_kategori_toedit;
@@ -176,7 +187,7 @@ router.post("/edit-jenis", (req, res) => {
   }
 });
 
-router.post("/edit-barang", (req, res) => {
+router.post("/edit-barang", adminAuth, (req, res) => {
   id_barang = req.body.idbarang_edit_barang;
 
   nama = req.body.nama_edit_barang;

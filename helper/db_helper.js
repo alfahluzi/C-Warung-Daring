@@ -15,7 +15,7 @@ module.exports = pool;
  * @function getResult
  * @param {string} query - Query String.
  * @param {any} pool - Sql pool class.
- * @param {function} callback (err, rows)
+ * @param {function} callback (err, rows) => {}
  */
 function getDbResult(query, callback) {
   executeQuery(query, (err, rows) => {
@@ -44,15 +44,5 @@ function executeQuery(query, callback) {
     }
   });
 }
-
-// function getServers() {
-//   getResult("select * from table", function (err, rows) {
-//     if (!err) {
-//       return rows;
-//     } else {
-//       console.log(err);
-//     }
-//   });
-// }
 
 module.exports = { getDbResult };

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warung Online</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/produk.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js"></script>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <style>
+    * {
+      user-select: none;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="main">
+
+    <div class="container b-container" id="b-container">
+      <form class="form" id="b-form" method="post" action="/submit-login">
+        <h2 class="form_title title">Sign in to Website</h2>
+        <input class="form__input" type="text" name="name" placeholder="Name">
+        <input class="form__input" type="password" name="password" placeholder="Password">
+        <button type="submit" class="form__button button submit">SIGN IN</button>
+      </form>
+    </div>
+    <div class="switch" id="switch-cnt">
+      <div class="switch__circle"></div>
+      <div class="switch__circle switch__circle--t"></div>
+      <div class="switch__container" id="switch-c1">
+        <h2 class="switch__title title">Welcome Back !</h2>
+        <p class="switch__description description">To keep connected with us please login with your personal info</p>
+        <a href="/regis"><button class="switch__button button switch-btn">OR SIGN UP</button></a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  $(document).ready(() => {
+    console.log("jquery active");
+
+  });
+</script>

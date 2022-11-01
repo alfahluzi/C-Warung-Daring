@@ -5,52 +5,43 @@ const app = express();
 const bcrypt = require("bcrypt");
 const sessions = require("express-session");
 const ejs = require("ejs");
-const fs_extra = require("fs-extra");
 
 ejs.delimiter = "?";
+
 app.use(
   sessions({
     secret: "inirahasiabanget",
     saveUninitialized: true,
-    resave: false,
+    resave: true,
   })
 );
 app.use(express.json());
 app.use(express.static("public"));
 app.use(urlencoded(express.urlencoded({ extended: false })));
-app.use(express.json());
 app.use("/css", express.static("node_modules/bootstrap/dist/css"));
 app.use("/js", express.static("node_modules/bootstrap/dist/js"));
 app.use("/js", express.static("node_modules/jquery/dist"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-var session;
-module.exports = session;
-
 // routes
 const home_r = require("./routes/home");
-app.use("/", home_r);
-
 const auth_r = require("./routes/auth");
-app.use("/", auth_r);
-
 const checkout_r = require("./routes/checkout");
-app.use("/", checkout_r);
-
 const details_r = require("./routes/details");
-app.use("/", details_r);
-
 const keranjang_r = require("./routes/keranjang");
+app.use("/", home_r);
+app.use("/", auth_r);
+app.use("/", checkout_r);
+app.use("/", details_r);
 app.use("/", keranjang_r);
 
 const transaksiAdmin_r = require("./routes/transaksiAdmin");
-app.use("/", transaksiAdmin_r);
-
 const kelolaBarangAdmin_r = require("./routes/kelolaBarangAdmin");
-app.use("/", kelolaBarangAdmin_r);
-
 const laporanAdmin_r = require("./routes/laporanAdmin");
+
+app.use("/", transaksiAdmin_r);
+app.use("/", kelolaBarangAdmin_r);
 app.use("/", laporanAdmin_r);
 
 // post route func ----------------------------
