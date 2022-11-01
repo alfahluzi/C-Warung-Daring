@@ -23,7 +23,7 @@
                         aria-labelledby="tambah-barang-Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form action="#" method="post">
+                                <form action="/tambah-barang-baru" method="post" enctype="multipart/form-data">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="tambah-barang-Label">Tambah Barang Baru</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -31,35 +31,36 @@
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" name="namaBarangBaru" id="namaBarangBaru" class="form-control" aria-label="Sizing example input"
+                                                aria-describedby="inputGroup-sizing-default" required>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text">Detail</span>
-                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                            <textarea name="detailBarangBaru" id="detailBarangbar" class="form-control" aria-label="With textarea"
+                                                required></textarea>
                                         </div>
                                         <div class="input-group mb-3">
                                             <label style="width: 20%;" class="input-group-text" for="inputGroupFile01">Gambar</label>
-                                            <input type="file" class="form-control" id="inputGroupFile01">
+                                            <input type="file" name="file" class="form-control" id="inputGroupFile01" required>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Jenis</label>
-                                            <select class="form-select" id="inputGroupSelect01">
+                                            <label style="width: 20%;" class="input-group-text" for="jenisBarangBaru">Jenis</label>
+                                            <select class="form-select" name="jenisBarangBaru" id="jenisBarangBaru" required>
                                                 <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <? for (let i = 0; i < jenis.length; i++) {?>
+                                                <option value="<?= jenis[i].Jenis_barang_id?>"><?= jenis[i].jenis?></option>
+                                                <?} ?>
                                             </select>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Harga</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-default">
+                                            <input type="number" name="hargaBarangBaru" id="hargaBarangBaru" class="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default" style="width: 20%;">Kuantitas</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-default">
+                                            <input type="number" name="kuantitasBarangBaru" id="kuantitasBarangBaru" class="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -79,7 +80,7 @@
                         aria-labelledby="tambah-jenis-Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form action="#" method="post">
+                                <form action="/tambah-jenis" method="post">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="tambah-jenis-Label">Tambah Jenis Baru</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -87,22 +88,22 @@
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                            <input type="text" name="namaJenis" id="namaJenis" class="form-control" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Kategori</label>
-                                            <select class="form-select" id="inputGroupSelect01">
+                                            <label style="width: 20%;" class="input-group-text" for="jenisKategori">Kategori</label>
+                                            <select class="form-select" name="jenisKategori" id="jenisKategori">
                                                 <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <? for (let i = 0; i < kategori.length; i++) {?>
+                                                <option value="<?= kategori[i].Kategori_barang_id?>"><?= kategori[i].kategori?></option>
+                                                <?} ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -117,7 +118,7 @@
                         aria-labelledby="tambah-kategori-Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form action="#" method="post">
+                                <form action="/tambah-kategori" method="post">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="tambah-jenis-Label">Tambah Kategori Baru</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -125,13 +126,13 @@
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                            <input type="text" class="form-control" name="namaKategori" id="namaKategori" aria-label="Sizing example input"
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -141,13 +142,13 @@
                 </div>
                 <div class="row bg-primary rounded-3" style="min-height: 90vh;">
                     <div class="row col p-3">
-                        <?for (let i = 0; i < 50; i++) {?>
+                        <?for (let i = 0; i < barang.length; i++) {?>
                         <div class="col-sm-4">
                             <div class="card m-1" style="width: 17rem;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG" class="card-img-top" alt="...">
+                                <img src=" ./assets/itemImages/<?= barang[i].foto?>" class="card-img-top" alt="...">
                                 <div class="container">
                                     <div class="row">
-                                        <h5 class="col">Kopi Pait</h5>
+                                        <h5 class="col"><?= barang[i].nama ?></h5>
                                         <!-- button-->
                                         <button type="button" class="col-2 btn btn-primary btn-sm p-0 m-1" data-bs-toggle="modal" data-bs-target="#edit-item">
                                             Edit
@@ -157,7 +158,7 @@
                                             aria-labelledby="edit-item-Label" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
-                                                    <form action="#" method="post">
+                                                    <form action="/edit-barang" method="post">
                                                         <div class="modal-header">
                                                             <h1 class="modal-title fs-5" id="tambah-barang-Label">Edit
                                                                 Barang</h1>
@@ -166,39 +167,52 @@
                                                         <div class="modal-body">
                                                             <div class="input-group mb-3">
                                                                 <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
-                                                                <input type="text" class="form-control" aria-label="Sizing example input"
-                                                                    aria-describedby="inputGroup-sizing-default">
+                                                                <input name="nama_edit_barang" type="text" class="form-control"
+                                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                                                    placeholder="<?= barang[i].nama?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <span style="width: 20%;" class="input-group-text">Detail</span>
-                                                                <textarea class="form-control" aria-label="With textarea"></textarea>
+                                                                <textarea name="detail_edit_barang" class="form-control" aria-label="With textarea"
+                                                                    placeholder="<?= barang[i].detail?>"></textarea>
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <label style="width: 20%;" class="input-group-text" for="inputGroupFile01">Gambar</label>
-                                                                <input type="file" class="form-control" id="inputGroupFile01">
+                                                                <input name="gambar_edit_barang" type="file" class="form-control" id="inputGroupFile01">
                                                             </div>
                                                             <div class="input-group mb-3">
-                                                                <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Jenis</label>
-                                                                <select class="form-select" id="inputGroupSelect01">
-                                                                    <option selected>Choose...</option>
-                                                                    <option value="1">One</option>
-                                                                    <option value="2">Two</option>
-                                                                    <option value="3">Three</option>
+                                                                <label style="width: 20%;" class="input-group-text" for="jenis_edit_barang">Jenis</label>
+                                                                <select class="form-select" name="jenis_edit_barang" id="jenis_edit_barang">
+                                                                    <? for (let j = 0; j < jenis.length; j++) {?>
+                                                                    <option <? if(jenis[j].Jenis_barang_id == barang[i].jenis){?>selected<?}?>
+                                                                        value="<?= jenis[j].Jenis_barang_id?>"><?= jenis[j].jenis?></option>
+                                                                    <?} ?>
                                                                 </select>
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Harga</span>
-                                                                <input type="text" class="form-control" aria-label="Sizing example input"
-                                                                    aria-describedby="inputGroup-sizing-default">
+                                                                <input name="harga_edit_barang" type="number" class="form-control"
+                                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                                                    placeholder="<?= barang[i].harga?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <span class="input-group-text" id="inputGroup-sizing-default"
                                                                     style="width: 20%;">Kuantitas</span>
-                                                                <input type="text" class="form-control" aria-label="Sizing example input"
-                                                                    aria-describedby="inputGroup-sizing-default">
+                                                                <input name="kuantitas_edit_barang" type="number" class="form-control"
+                                                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                                                    placeholder="<?= barang[i].kuantitas?>">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
+                                                            <input type="hidden" name="idbarang_edit_barang" value="<?= barang[i].Barang_id?>">
+
+                                                            <input type="hidden" name="nama_last_data" value="<?= barang[i].nama?>">
+                                                            <input type="hidden" name="detail_last_data" value="<?= barang[i].detail?>">
+                                                            <input type="hidden" name="gambar_last_data" value="<?= barang[i].foto?>">
+                                                            <input type="hidden" name="jenis_last_data" value="<?= barang[i].jenis?>">
+                                                            <input type="hidden" name="harga_last_data" value="<?= barang[i].harga?>">
+                                                            <input type="hidden" name="kuantitas_last_data" value="<?= barang[i].kuantitas?>">
+
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-primary">Submit</button>
                                                         </div>
@@ -221,22 +235,29 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Yakin hapus barang ini?
+                                                        Yakin hapus barang <?= barang[i].nama?>?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                        <button type="button" class="btn btn-primary">Hapus</button>
+                                                        <form action="/hapus-barang" method="post">
+                                                            <input type="hidden" name="barang_id_todelete" id="barang_id_todelete"
+                                                                value="<?= barang[i].Barang_id?>">
+                                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <hr class="m-1 p-0">
-                                    <p class="card-text">Kopi Pait 1 kali peres Mantap!</p>
+                                    <p class="card-text"><?= barang[i].detail?></p>
                                     <div class="row">
-                                        <p class="col card-text">Rp50.000,00</p>
-                                        <p class="col-2 card-text">B5</p>
-                                        <p class="col-5 card-text">Terjual: 999</p>
+                                        <span class="col card-text">Rp<?= barang[i].harga?></span>
+                                        <span class="col card-text">Rate: <?= barang[i].rating?></span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col card-text">Kuant: <?= barang[i].kuantitas?></span>
+                                        <span class="col card-text">Terjual: <?= barang[i].jumlah_terjual?></span>
                                     </div>
                                 </div>
                             </div>
@@ -249,14 +270,14 @@
                             <hr>
                             <ul class="list-group" style="height: 30vh;overflow-y: auto;">
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>
+                                    <!--<button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>-->
                                 </div>
-                                <?for (let i = 0; i < 50; i++) {?>
+                                <?for (let i = 0; i < jenis.length; i++) {?>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" style="width: 90%;">Makanan</button>
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" style="width: 90%;"><?= jenis[i].jenis ?></button>
                                     <!-- button-->
                                     <button type="button" class="btn btn-outline-info rounded-0 text-dark" data-bs-toggle="modal"
-                                        data-bs-target="#edit-jenis">Edit</button>
+                                        data-bs-target="#edit-jenis-<?= jenis[i].Jenis_barang_id?>">Edit</button>
                                 </div>
                                 <?}?>
                             </ul>
@@ -266,25 +287,27 @@
                             <hr>
                             <ul class="list-group" style="height: 30vh;overflow-y: auto;">
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>
+                                    <!--<button type="button" class="btn btn-outline-info rounded-top rounded-0 text-dark" style="width: 90%;">Semua</button>-->
                                 </div>
-                                <?for (let i = 0; i < 50; i++) {?>
+                                <?for (let i = 0; i < kategori.length; i++) {?>
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" style="width: 90%;">Makanan</button>
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark"
+                                        style="width: 90%;"><?= kategori[i].kategori ?></button>
                                     <!-- button-->
-                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" data-bs-toggle="modal"
-                                        data-bs-target="#delete-kategori">Del</button>
+                                    <button type="button" class="btn btn-outline-info rounded-0 text-dark" id="button-delete-kategori" data-bs-toggle="modal"
+                                        data-bs-target="#delete-kategori-<?= kategori[i].Kategori_barang_id?>">Del</button>
                                 </div>
                                 <?}?>
                             </ul>
                         </div>
                     </div>
+                    <?for (let i = 0; i < jenis.length; i++) {?>
                     <!-- modal edit jenis -->
-                    <div class="modal fade" id="edit-jenis" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-jenis-Label"
-                        aria-hidden="true">
+                    <div class="modal fade" id="edit-jenis-<?= jenis[i].Jenis_barang_id?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="edit-jenis-Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form action="#" method="post">
+                                <form action="/edit-jenis" method="post">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="edit-jenis-Label">Edit Jenis</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -292,30 +315,37 @@
                                     <div class="modal-body">
                                         <div class="input-group mb-3">
                                             <span style="width: 20%;" class="input-group-text" id="inputGroup-sizing-default">Nama</span>
-                                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                                aria-describedby="inputGroup-sizing-default">
+                                            <input type="text" id="nama_jenis_toedit" name="nama_jenis_toedit" class="form-control"
+                                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                                                placeholder="<?= jenis[i].jenis?>">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <label style="width: 20%;" class="input-group-text" for="inputGroupSelect01">Kategori</label>
-                                            <select class="form-select" id="inputGroupSelect01">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <label style="width: 20%;" class="input-group-text" for="jenis_kategori_toedit">Kategori</label>
+                                            <select class="form-select" name="jenis_kategori_toedit" id="jenis_kategori_toedit">
+                                                <? for (let j = 0; j < kategori.length; j++) {?>
+                                                <option <? if(kategori[j].Kategori_barang_id == jenis[i].kategori_id){?>selected<?}?>
+                                                    value="<?= kategori[j].Kategori_barang_id?>"><?= kategori[j].kategori?></option>
+                                                <?} ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
+
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                        <input type="hidden" name="jenis_id_toedit" id="jenis_id_toedit" value="<?= jenis[i].Jenis_barang_id?>">
+                                        <input type="hidden" name="kategori_terpasang" id="kategori_terpasang" value="<?= jenis[i].kategori_id?>">
+                                        <input type="hidden" name="nama_terpasang" id="nama_terpasang" value="<?= jenis[i].kategori?>">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <?}?>
+                    <?for (let i = 0; i < kategori.length; i++) {?>
                     <!-- modal delete kategori-->
-                    <div class="modal fade" id="delete-kategori" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delete-kategori-Label"
-                        aria-hidden="true">
+                    <div class="modal fade" id="delete-kategori-<?= kategori[i].Kategori_barang_id?>" data-bs-keyboard="false" tabindex="-1"
+                        aria-labelledby="delete-kategori-Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -324,17 +354,24 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Yakin hapus kategori ini?
+                                    Yakin hapus kategori <?= kategori[i].kategori?>?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                    <button type="button" class="btn btn-primary">Hapus</button>
+                                    <form action="/hapus-kategori" method="post">
+                                        <input type="hidden" name="kategori_id_todelete" id="kategori_id_todelete" value="<?= kategori[i].Kategori_barang_id?>">
+                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?}?>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script>
+</script>

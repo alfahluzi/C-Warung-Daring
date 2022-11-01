@@ -5,6 +5,8 @@ const app = express();
 const bcrypt = require("bcrypt");
 const sessions = require("express-session");
 const ejs = require("ejs");
+const fs_extra = require("fs-extra");
+
 ejs.delimiter = "?";
 app.use(
   sessions({
@@ -42,8 +44,14 @@ app.use("/", details_r);
 const keranjang_r = require("./routes/keranjang");
 app.use("/", keranjang_r);
 
-const dahsboardAdmin_r = require("./routes/dashboardAdmin");
-app.use("/", dahsboardAdmin_r);
+const transaksiAdmin_r = require("./routes/transaksiAdmin");
+app.use("/", transaksiAdmin_r);
+
+const kelolaBarangAdmin_r = require("./routes/kelolaBarangAdmin");
+app.use("/", kelolaBarangAdmin_r);
+
+const laporanAdmin_r = require("./routes/laporanAdmin");
+app.use("/", laporanAdmin_r);
 
 // post route func ----------------------------
 app.post("/tambah", (req, res) => {

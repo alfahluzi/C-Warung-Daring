@@ -15,7 +15,7 @@ module.exports = pool;
  * @function getResult
  * @param {string} query - Query String.
  * @param {any} pool - Sql pool class.
- * @param {function} callback
+ * @param {function} callback (err, rows)
  */
 function getDbResult(query, callback) {
   executeQuery(query, (err, rows) => {
