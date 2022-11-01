@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Warung Digital</title>
+        <!-- bootstrap 5 css -->
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
+          crossorigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+        />
+        <link rel="stylesheet" href="produk.css">
+        <link rel="stylesheet" href="home.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="./main.gif">
+</head>
+    <body>
+      <div>
+          <div class="sidebar p-4 bg-primary" id="sidebar">
+            <img src="./logo1.png" alt="logo1" class="logo1">
+            <img src="./logo2.png" alt="logo2" class="logo2">
+            <h4 class="mb-5 text-white">Warung DIgital</h4>
+            <li>
+              <a class="text-white" href="home.html">
+                <i class="bi bi-house mr-2"></i>
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a class="text-white" href="orders.html">
+                <i class="bi bi-fire mr-2"></i>
+                Orders
+              </a>
+            </li>
+            <li>
+              <a class="text-white" href="#">
+                <i class="bi bi-newspaper mr-2"></i>
+                Transaction
+              </a>
+            </li>
+            <li>
+              <a class="text-white" href="index.html">
+                <i class="bi bi-bicycle mr-2"></i>
+                Logout
+              </a>
+            </li>
+          </div>
+        </div>
+    <section class="p-4" id="main-content">
+          <div class="box">
+            <div class="container-1">
+                <span class="icon"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchengine" onkeyup="cari()" placeholder="Search..." />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="button-toggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="card mt-5">
+            <div class="card-body">
+              <h4>Warung Digital</h4>
+              <p>
+                platform teknologi Online-to-Offline dan penyedia produk digital yang 
+                berkomitmen untuk memberdayakan warung serta usaha kecil dan menengah
+                untuk berjualan berbagai macam produk dan layanan dengan satu aplikasi.
+              </p>
+            </div>
+          </div>
+<div class="card mt-5">
+  <div class="card-body">
+    <div class="badan">
+      <h4>Produk Baru</h4>
+
+      <div class="list-produk" id="produk">
+          <img src="./susu.jpeg" id="susu" alt="susu">
+
+          <h4>Susu</h4>
+          <h5>Rp 50.000</h5>
+
+          <a class="tombol tombol-detail" href="susu.html">Detail</a> 
+          <a class="tombol tombol-beli" href="susu.html">Beli</a>
+      </div>
+
+      <div class="list-produk">
+          <img src="./daging.png" id="daging" alt="daging">
+
+          <h4>Daging Sapi</h4>
+          <h5>Rp 230.000</h5>
+
+          <a class="tombol tombol-detail" href="#">Detail</a> 
+          <a class="tombol tombol-beli" href="#">Beli</a>
+      </div>
+
+      <div class="list-produk">
+          <img src="./beras.png" id="beras" alt="beras">
+
+          <h4>Beras</h4>
+          <h5>Rp 250.000</h5>
+
+          <a class="tombol tombol-detail" href="#">Detail</a> 
+          <a class="tombol tombol-beli" href="#">Beli</a>
+      </div>
+
+      <div class="list-produk">
+          <img src="./gandum.png" id="gandum" alt="gandum">
+
+          <h4>Gandum</h4>
+          <h5>Rp 170.000</h5>
+
+          <a class="tombol tombol-detail" href="#">Detail</a> 
+          <a class="tombol tombol-beli" href="#">Beli</a>
+      </div>
+      
+      <div class="list-produk">
+        <img src="./sajadah.png" id="sajadah" alt="sajadah">
+
+        <h4>Sajadah</h4>
+        <h5>Rp 80.000</h5>
+
+        <a class="tombol tombol-detail" href="#">Detail</a> 
+        <a class="tombol tombol-beli" href="#">Beli</a>
+    </div>
+
+    <div class="list-produk">
+      <img src="./koko.jpeg" id="koko" alt="koko">
+
+      <h4>Koko</h4>
+      <h5>Rp 70.000</h5>
+
+      <a class="tombol tombol-detail" href="#">Detail</a> 
+      <a class="tombol tombol-beli" href="#">Beli</a>
+  </div>
+
+  <div class="list-produk">
+    <img src="./tasbih.jpg" id="tasbih" alt="tasbih">
+
+    <h4>Tasbih</h4>
+    <h5>Rp 170.000</h5>
+
+    <a class="tombol tombol-detail" href="#">Detail</a> 
+    <a class="tombol tombol-beli" href="#">Beli</a>
+  </div>
+
+  <div class="list-produk">
+    <img src="./peci.webp" id="peci" alt="peci">
+
+    <h4>Peci</h4>
+    <h5>Rp 40.000</h5>
+
+    <a class="tombol tombol-detail" href="#">Detail</a> 
+    <a class="tombol tombol-beli" href="#">Beli</a>
+</div>
+
+  </div>
+            </div>
+          </div>
+    </section>
+<script>
+        // pada saat akan dieksekusi ketika tombol diklik
+        document.getElementById("button-toggle").addEventListener("click", () => {
+
+        // ketika tombol-toggle diklik, itu akan menambah/menghapus kelas bilah sisi aktif
+        document.getElementById("sidebar").classList.toggle("active-sidebar");
+
+        // ketika tombol-toggle diklik, itu akan menambah/menghapus kelas konten utama aktif
+        document.getElementById("main-content").classList.toggle("active-main-content");
+    });
+
+    // function cari(){
+    //   var input = document.getElementById("searchengine");
+    //   var filter = input.value.cari();
+    //   var div = document.getElementById("produk");
+    //   var img = document.querySelectorAll("img")
+    //   console.log(list-produk)
+    //   for(var i=0; i<list-produk.lenghth; i++){
+    //     var src = document.querySelectorAll("")
+    //   }
+    // }
+
+
+</script>
+      </body>
+</html>
+    
