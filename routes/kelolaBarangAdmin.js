@@ -3,6 +3,8 @@ const router = express.Router();
 const { getDbResult, pool } = require("../helper/db_helper");
 const multer = require("multer");
 const path = require("path");
+const { getSession } = require("../helper/session_helper");
+sess = getSession();
 module.exports = router;
 
 let daftarBarang;
@@ -37,9 +39,8 @@ function checkFileType(file, cb) {
 }
 
 function adminAuth(req, res, next) {
-  if (!req.session.user.login) res.redirect("/login");
-  role = req.session.user.role;
-  if (role == 1) {
+  if (sess == false) res.redirect("/login");
+  if (sess.role == 1) {
     console.log("kamu admin");
     return next();
   }

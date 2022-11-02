@@ -1,10 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const { getDbResult } = require("../helper/db_helper");
-
+const { getSession } = require("../helper/session_helper");
+sess = getSession();
 module.exports = router;
+function adminAuth(req, res, next) {
+  if (sess == false) res.redirect("/login");
+  if (sess.role == 1) {
+    console.log("kamu admin");
+    return next();
+  }
+  console.log("kamu bukan admin");
+  res.redirect("/home");
+}
 
-router.get("/transaksi-admin", (req, res) => {
+router.get("/transaksi-admin", adminAuth, (req, res) => {
   getDbResult(
     `SELECT * 
     FROM transaksi
@@ -30,7 +40,7 @@ router.get("/transaksi-admin", (req, res) => {
   );
 });
 
-router.post("/detail-konfirmasi-pembayaran", (req, res) => {
+router.post("/detail-konfirmasi-pembayaran", adminAuth, (req, res) => {
   let transaksi_id = req.body.transaksiId;
   if (transaksi_id != "" || transaksi_id != undefined) {
     console.log(transaksi_id);
@@ -50,7 +60,7 @@ router.post("/detail-konfirmasi-pembayaran", (req, res) => {
   }
 });
 
-router.post("/cek-resi", (req, res) => {
+router.post("/cek-resi", adminAuth, (req, res) => {
   let resi = req.body.resi;
   if (resi != "" || resi !== undefined) {
     getDbResult(
@@ -66,7 +76,7 @@ router.post("/cek-resi", (req, res) => {
   }
 });
 
-router.post("/konfirmasi-pembayaran", (req, res) => {
+router.post("/konfirmasi-pembayaran", adminAuth, (req, res) => {
   let id = req.body.id_konfirmasi_pembayaran;
   console.log(id);
 
@@ -85,7 +95,7 @@ router.post("/konfirmasi-pembayaran", (req, res) => {
     );
   }
 });
-router.post("/konfirmasi-pengambilan", (req, res) => {
+router.post("/konfirmasi-pengambilan", adminAuth, (req, res) => {
   let resi = req.body.resi_konfirmasi;
   let id = req.body.id_konfirmasi;
   console.log(resi);
