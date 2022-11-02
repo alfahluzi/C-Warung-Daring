@@ -38,9 +38,8 @@ router.post("/submit-login", (req, res) => {
         else console.log("found rows");
 
         if (await bcrypt.compare(password, rows[0].password)) {
-          if (sess) {
-            removeSession();
-          }
+          if (sess) removeSession();
+
           setSession(
             JSON.stringify({
               id: rows[0].Akun_id,

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,6 +36,7 @@
         <input type="text" id="searchengine" onkeyup="cari()" placeholder="Search..." />
       </div>
     </div>
+
     <button class="btn btn-primary" id="button-toggle">
       <i class="bi bi-list"></i>
     </button>
@@ -64,11 +63,11 @@
             </h4>
             <h5>Rp <?= barang[i].harga?></h5>
             <form action="/detail-barang" method="post">
-              <input type="hidden" value="">
+              <input type="hidden" id="barang_id" name="barang_id" value="<?=barang[i].Barang_id?>">
               <button type="submit" class="tombol tombol-detail" href="/detail-barang" style="border-width: 0;">Detail</button>
             </form>
             <form action="/tambah-keranjang" method="post">
-              <input type="hidden" value="">
+              <input type="hidden" id="barang_id" name="barang_id" value="<?=barang[i].Barang_id?>">
               <button type="submit" class="tombol tombol-beli" href="/tambah-keranjang" style="width: auto; border-width: 0;">Tambah keranjang</button>
             </form>
           </div>
