@@ -18,6 +18,8 @@ router.get("/transaksi-admin", (req, res) => {
       WHERE transaksi.status_pembayaran = 'c' AND transaksi.status_pengambilan = 'n'`,
         (err, menungguPengambilan) => {
           if (err) console.log(err);
+          console.log(transaksiMasuk);
+
           res.render("transaksiAdminPage", {
             transaksiMasuk: transaksiMasuk,
             menungguPengambilan: menungguPengambilan,
@@ -64,6 +66,25 @@ router.post("/cek-resi", (req, res) => {
   }
 });
 
+router.post("/konfirmasi-pembayaran", (req, res) => {
+  let id = req.body.id_konfirmasi_pembayaran;
+  console.log(id);
+
+  if (id == "" || id === undefined) {
+    res.redirect("/transaksi-admin");
+  } else {
+    getDbResult(
+      `UPDATE transaksi
+      SET status_pembayaran = 'c'
+      WHERE Transaksi_id = ${id}`,
+      (err, rows) => {
+        if (!err) console.log("berhasil konfirmasi pembayaran");
+        else return console.log(err);
+        res.redirect("/transaksi-admin");
+      }
+    );
+  }
+});
 router.post("/konfirmasi-pengambilan", (req, res) => {
   let resi = req.body.resi_konfirmasi;
   let id = req.body.id_konfirmasi;

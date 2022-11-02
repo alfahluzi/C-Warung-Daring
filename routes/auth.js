@@ -3,23 +3,23 @@ const router = express.Router();
 const { getDbResult } = require("../helper/db_helper");
 const { isEmpty } = require("../helper/restric_helper");
 const bcrypt = require("bcrypt");
-const session = require("express-session");
+const {
+  getSession,
+  setSession,
+  removeSession,
+} = require("../helper/session_helper");
 module.exports = router;
 
+sess = getSession();
 router.get("/login", (req, res) => {
   res.render("loginPage", {});
 });
-
-// module.exports = function toLogin(routerApp) {
-//   routerApp.get("/login", (req, res) => {
-//     res.render("loginPage", {});
-//   });
-// };
 
 router.get("/regis", (req, res) => {
   res.render("regisPage", {});
 });
 router.get("/logout", (req, res) => {
+  removeSession();
   req.session.destroy();
   res.clearCookie();
   res.redirect("/login");
@@ -28,32 +28,33 @@ router.get("/logout", (req, res) => {
 router.post("/submit-login", (req, res) => {
   let name = req.body.name;
   let password = req.body.password;
+  if (isEmpty(name) || isEmpty(password)) return res.redirect("/login");
   try {
     getDbResult(
       `SELECT * FROM akun WHERE akun.nama = '${name}'`,
       async (err, rows) => {
         if (err) return console.log("error " + err);
-        if (rows[0] === undefined) return;
+        if (isEmpty(rows.length)) return res.redirect("/login");
+        else console.log("found rows");
+
         if (await bcrypt.compare(password, rows[0].password)) {
-          if (req.session.authenticated) {
-            console.log(req.session);
-          } else {
-            req.session.authenticated = true;
-            req.session.user = {
+          if (sess) {
+            removeSession();
+          }
+          setSession(
+            JSON.stringify({
               id: rows[0].Akun_id,
               name: name,
               role: rows[0].role,
-              login: true,
-            };
-            req.session.save();
-          }
-          console.log(req.session);
+            })
+          );
           res.redirect("/home");
         } else res.send("not success");
       }
     );
   } catch (error) {
     console.log(error);
+    res.redirect("home");
   }
 });
 router.post("/submit-regis", async (req, res) => {

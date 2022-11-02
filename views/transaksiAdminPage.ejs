@@ -84,7 +84,10 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">kembali</button>
                         <button type="button" class="btn btn-danger">Tidak Valid</button>
-                        <button type="button" class="btn btn-primary">Konfirmasi</button>
+                        <form action="/konfirmasi-pembayaran" method="post">
+                            <input type="" id="id_konfirmasi_pembayaran" name="id_konfirmasi_pembayaran" value="">
+                            <button type="submit" class="btn btn-primary">Konfirmasi</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -207,6 +210,7 @@
 
 <script>
     function ajaxModelTransaksi(transaksi_id) {
+        console.log('transaksi id: ' + transaksi_id);
         $.ajax({
             url: "/detail-konfirmasi-pembayaran",
             method: "POST",
@@ -217,8 +221,13 @@
                 let list = data.data
 
                 $('#konfirmasi-table-body tr').remove()
+                $('#id_konfirmasi_pembayaran').val(-1)
+                $('#konfirmasi-customer-transaksi').text('')
+                $('#konfirmasi-id-transaksi').text('')
+
                 $('#konfirmasi-customer-transaksi').text('customer:' + list[0].customer_id)
                 $('#konfirmasi-id-transaksi').text('Transaksi:' + list[0].transaksi_id)
+                $('#id_konfirmasi_pembayaran').val(list[0].transaksi_id)
                 for (let i = 0; i < list.length; i++) {
                     $('#konfirmasi-table-body').append(`
                     <tr>
