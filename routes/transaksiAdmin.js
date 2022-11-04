@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { getDbResult } = require("../helper/db_helper");
+const { isEmpty } = require("../helper/restric_helper");
 const { getSession } = require("../helper/session_helper");
 sess = getSession();
 module.exports = router;
@@ -41,14 +42,14 @@ router.get("/transaksi-admin", adminAuth, (req, res) => {
 });
 
 router.post("/detail-konfirmasi-pembayaran", adminAuth, (req, res) => {
-  let transaksi_id = req.body.transaksiId;
-  if (transaksi_id != "" || transaksi_id != undefined) {
-    console.log(transaksi_id);
+  let kode_resi = req.body.resi;
+  if (!isEmpty(kode_resi)) {
+    console.log(kode_resi);
     getDbResult(
       `SELECT * 
     FROM penjualan
-    LEFT JOIN transaksi ON transaksi.Transaksi_id = penjualan.transaksi_id
-    WHERE penjualan.transaksi_id = ${transaksi_id}`,
+    LEFT JOIN transaksi ON transaksi.kode_resi = penjualan.kode_resi
+    WHERE penjualan.kode_resi = ${kode_resi}`,
       (err, rows) => {
         if (!err) console.log("detail konfirmasi pembayaran didapat");
         else return console.log(err);
@@ -77,16 +78,17 @@ router.post("/cek-resi", adminAuth, (req, res) => {
 });
 
 router.post("/konfirmasi-pembayaran", adminAuth, (req, res) => {
-  let id = req.body.id_konfirmasi_pembayaran;
-  console.log(id);
+  let resi = req.body.kode_resi_konfirmasi_pembayaran;
+  console.log(resi);
 
-  if (id == "" || id === undefined) {
+  if (isEmpty(resi)) {
+    console.log("resi tidak ada");
     res.redirect("/transaksi-admin");
   } else {
     getDbResult(
       `UPDATE transaksi
       SET status_pembayaran = 'c'
-      WHERE Transaksi_id = ${id}`,
+      WHERE kode_resi = ${resi}`,
       (err, rows) => {
         if (!err) console.log("berhasil konfirmasi pembayaran");
         else return console.log(err);

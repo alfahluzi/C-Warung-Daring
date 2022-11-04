@@ -69,6 +69,31 @@ router.get("/kelola-barang-admin", adminAuth, (req, res) => {
   });
 });
 
+router.post("/search-kelola-barang-admin", adminAuth, (req, res) => {
+  keywoard = req.body.keywoard;
+  getDbResult("select * from jenis_barang", (err, rowsJenis) => {
+    if (err) return console.log(err);
+    daftarJenis = rowsJenis;
+    getDbResult("select * from kategori_barang", (err, rowsKategori) => {
+      if (err) return console.log(err);
+      daftarKategori = rowsKategori;
+      getDbResult(
+        `select * from barang where barang.nama = '%${keywoard}%'`,
+        (err, rowsBarang) => {
+          if (err) return console.log(err);
+          daftarBarang = rowsBarang;
+
+          res.render("kelolaBarangAdminPage", {
+            barang: daftarBarang,
+            jenis: daftarJenis,
+            kategori: daftarKategori,
+          });
+        }
+      );
+    });
+  });
+});
+
 router.post("/tambah-kategori", adminAuth, (req, res) => {
   nama = req.body.namaKategori;
   if (nama !== undefined) {

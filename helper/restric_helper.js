@@ -1,7 +1,7 @@
 function isEmpty(e) {
   if (e === undefined) return true;
-  if (e == null) return true;
-  if (e == "") return true;
+  else if (e == null) return true;
+  else if (e == "") return true;
   return false;
 }
 

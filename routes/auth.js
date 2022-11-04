@@ -8,6 +8,7 @@ const {
   setSession,
   removeSession,
 } = require("../helper/session_helper");
+const pool = require("../helper/db_helper");
 module.exports = router;
 
 sess = getSession();
@@ -47,6 +48,7 @@ router.post("/submit-login", (req, res) => {
               role: rows[0].role,
             })
           );
+          console.log("success");
           res.redirect("/home");
         } else res.send("not success");
       }

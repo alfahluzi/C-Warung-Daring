@@ -2,6 +2,9 @@ const mysql = require("mysql");
 //database pool
 
 var pool = mysql.createPool({
+  connectTimeout: 60 * 60 * 1000,
+  acquireTimeout: 60 * 60 * 1000,
+  timeout: 60 * 60 * 1000,
   host: "localhost",
   user: "root",
   password: "",
@@ -9,6 +12,13 @@ var pool = mysql.createPool({
 });
 
 module.exports = pool;
+
+function disconnectDb() {
+  pool.getConnection((err, conn) => {
+    conn.release();
+    return true;
+  });
+}
 
 /**
  *

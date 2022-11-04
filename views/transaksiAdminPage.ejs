@@ -26,7 +26,7 @@
                             <!-- button pembayaran-->
                             <button <?if(transaksiMasuk[i].status_pembayaran=='n' ){ ?>disabled
                                 <?}?> type="button" class="btn btn-primary btn-sm mx-auto d-flex justify-content-center" data-bs-toggle="modal"
-                                data-bs-target="#detail-pembayaran" onclick="ajaxModelTransaksi('<?=transaksiMasuk[i].Transaksi_id?>')" >
+                                data-bs-target="#detail-pembayaran" onclick="ajaxModelTransaksi('<?=transaksiMasuk[i].kode_resi?>')" >
                                 Konfirmasi
                             </button>
                         </div>
@@ -85,7 +85,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">kembali</button>
                         <button type="button" class="btn btn-danger">Tidak Valid</button>
                         <form action="/konfirmasi-pembayaran" method="post">
-                            <input type="" id="id_konfirmasi_pembayaran" name="id_konfirmasi_pembayaran" value="">
+                            <input type="text" id="kode_resi_konfirmasi_pembayaran" name="kode_resi_konfirmasi_pembayaran" value="">
                             <button type="submit" class="btn btn-primary">Konfirmasi</button>
                         </form>
                     </div>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="col-2">
                                 <!-- button pengambilan-->
-                                <button onclick="ajaxModelPengambilan('<?=transaksiMasuk[i].Transaksi_id?>')" type="button"
+                                <button onclick="ajaxModelPengambilan('<?=menungguPengambilan[i].kode_resi?>')" type="button"
                                     class=" btn btn-primary btn-sm mx-auto d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#detail-item">
                                     Detail
                                 </button>
@@ -173,7 +173,7 @@
                                                         <h5 id="pengambilan-customer-transaksi"></h5>
                                                     </div>
                                                     <div class="col">
-                                                        <h5 id="pengambilan-id-transaksi"></h5>
+                                                        <h5 id="pengambilan-resi-transaksi"></h5>
                                                     </div>
                                                     <hr>
                                                 </div>
@@ -200,8 +200,8 @@
                             </div>
                         </div>
                     </div>
+                    <? } ?>
                 </div>
-                <? } ?>
             </div>
         </div>
     </div>
@@ -209,25 +209,25 @@
 </body>
 
 <script>
-    function ajaxModelTransaksi(transaksi_id) {
-        console.log('transaksi id: ' + transaksi_id);
+    function ajaxModelTransaksi(kode_resi) {
+        console.log('transaksi id: ' + kode_resi);
         $.ajax({
             url: "/detail-konfirmasi-pembayaran",
             method: "POST",
             async: false,
-            data: { transaksiId: transaksi_id }, //send data
+            data: { resi: kode_resi }, //send data
             dataType: "JSON",
             success: (data) => {
                 let list = data.data
 
                 $('#konfirmasi-table-body tr').remove()
-                $('#id_konfirmasi_pembayaran').val(-1)
+                $('#kode_resi_konfirmasi_pembayaran').val(-1)
                 $('#konfirmasi-customer-transaksi').text('')
                 $('#konfirmasi-id-transaksi').text('')
 
                 $('#konfirmasi-customer-transaksi').text('customer:' + list[0].customer_id)
                 $('#konfirmasi-id-transaksi').text('Transaksi:' + list[0].transaksi_id)
-                $('#id_konfirmasi_pembayaran').val(list[0].transaksi_id)
+                $('#kode_resi_konfirmasi_pembayaran').val(list[0].kode_resi)
                 for (let i = 0; i < list.length; i++) {
                     $('#konfirmasi-table-body').append(`
                     <tr>
@@ -254,19 +254,19 @@
         })
     }
 
-    function ajaxModelPengambilan(transaksi_id) {
+    function ajaxModelPengambilan(kode_resi) {
         $.ajax({
             url: "/detail-konfirmasi-pembayaran",
             method: "POST",
             async: false,
-            data: { transaksiId: transaksi_id }, //send data
+            data: { resi: kode_resi }, //send data
             dataType: "JSON",
             success: (data) => {
                 let list = data.data
 
                 $('#pengambilan-table-body tr').remove()
                 $('#pengambilan-customer-transaksi').text('customer:' + list[0].customer_id)
-                $('#pengambilan-id-transaksi').text('Transaksi:' + list[0].transaksi_id)
+                $('#pengambilan-resi-transaksi').text('Transaksi:' + list[0].kode_resi)
                 for (let i = 0; i < list.length; i++) {
                     $('#pengambilan-table-body').append(`
                     <tr>

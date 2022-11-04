@@ -29,8 +29,8 @@
 <body
     style="color: white;  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCim6E4qYpVG172IbBl5MdT6m5cLhZHLk4LdJEgGqa&s) !important;">
     <p> Upload Bukti Pembayaran</p>
-    <input type="file">
-    <form action="/finish-checkout" method="post">
+    <form action="/finish-checkout" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" required>
         <button type="submit">checkout</button>
     </form>
 </body>
