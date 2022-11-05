@@ -1,0 +1,68 @@
+/** @format */
+
+h1 {
+  text-align: center;
+}
+body {
+  background-image: url("assets/ortherimage/bg.jpeg");
+}
+
+* {
+  /* Change your font family */
+  font-family: sans-serif;
+}
+
+.content-table,
+.content-table2,
+.content-table3 {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table1,
+.content-table2,
+.content-table3 thead tr {
+  background-color: black;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table1,
+.content-table2,
+.content-table3 th,
+.content-table1,
+.content-table2,
+.content-table3 td {
+  padding: 12px 15px;
+}
+
+.content-table1,
+.content-table2,
+.content-table3 tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table1,
+.content-table2,
+.content-table3 tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table1,
+.content-table2,
+.content-table3 tbody tr:last-of-type {
+  border-bottom: 2px solidblack;
+}
+
+.content-table1,
+.content-table2,
+.content-table3 tbody tr.active-row {
+  font-weight: bold;
+  color: black;
+}

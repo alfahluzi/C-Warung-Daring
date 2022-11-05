@@ -19,7 +19,7 @@ function disconnectDb() {
     return true;
   });
 }
-
+ 
 /**
  *
  * @function getResult

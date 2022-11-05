@@ -1,0 +1,65 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warung Online</title>
+    <style>
+      <link rel="stylesheet" href="./css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/style.css">
+        body{
+            margin: 0;
+            background-image: url();
+        }
+        #wrapper_keranjang{
+            width: 100%;
+            margin 15px 0 15;
+        }
+        .nama_barang{
+            width: 30%;
+            margin:0% 1.6666667%;
+            float:left;
+            display:inline;
+            word-wrap:break-word;
+            overflow:hidden;
+        }
+        .harga_barang{
+            width: 30%;
+            margin:0% 1.6666667%;
+            float:left;
+            display:inline;
+            word-wrap:break-word;
+            overflow:hidden;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper_keranjang">
+      <div class="keranjang">
+        <div class="nama_barang">
+          <p class="nama">
+            nama:
+            <?=barang[i].nama?>
+          </p>
+        </div>
+
+        <div class="harga_barang">
+          <p class="harga">
+            harga:
+            <?=barang[i].harga?>
+          </p>
+        </div>
+
+        <div class="barang">
+          <p class="kuantitas">
+            kuantitas:
+            <?=barang[i].kuantitas?>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
